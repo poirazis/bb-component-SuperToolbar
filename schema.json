@@ -3,14 +3,50 @@
   "metadata": {},
   "schema": {
     "name": "bb-component-SuperActionButtonGroup",
-    "friendlyName": "bb-component-SuperActionButtonGroup",
+    "friendlyName": "Super Action Button Group",
     "description": "Manage groups of Super Action Button components",
     "icon": "Text",
+    "hasChildren" : true,
     "settings": [
       {
         "type": "text",
         "key": "text",
         "label": "Text"
+      },
+      {
+        "type": "select",
+        "key": "size",
+        "label": "Size",
+        "options" : [
+          { "label": "Extra Small" , "value" : "XS" },
+          { "label": "Small" , "value" : "S" },
+          { "label": "Medium" , "value" : "M" },
+          { "label": "Large" , "value" : "L" },
+          { "label": "Extra Large" , "value" : "XL" }
+        ],
+        "defaultValue" : "M"
+      },
+      {
+        "type": "select",
+        "label": "Direction",
+        "key": "direction",
+        "showInBar": true,
+        "barStyle": "buttons",
+        "options": [
+          {
+            "label": "Column",
+            "value": "column",
+            "barIcon": "ViewColumn",
+            "barTitle": "Column layout"
+          },
+          {
+            "label": "Row",
+            "value": "row",
+            "barIcon": "ViewRow",
+            "barTitle": "Row layout"
+          }
+        ],
+        "defaultValue": "column"
       }
     ]
   }
