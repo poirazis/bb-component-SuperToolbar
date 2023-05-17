@@ -1,0 +1,17 @@
+{
+  "type": "component",
+  "metadata": {},
+  "schema": {
+    "name": "bb-component-SuperActionButtonGroup",
+    "friendlyName": "bb-component-SuperActionButtonGroup",
+    "description": "Manage groups of Super Action Button components",
+    "icon": "Text",
+    "settings": [
+      {
+        "type": "text",
+        "key": "text",
+        "label": "Text"
+      }
+    ]
+  }
+}
