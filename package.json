@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Manage groups of Super Action Button components",
   "license": "MIT",
+  "author": "Michael Poirazi",
   "svelte": "index.js",
   "module": "dist/plugin.min.js",
   "scripts": {
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
+    "@spectrum-css/actiongroup": "^3.0.42",
     "svelte": "^3.49.0"
   },
   "devDependencies": {
