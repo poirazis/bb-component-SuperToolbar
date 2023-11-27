@@ -2,12 +2,45 @@
   "type": "component",
   "metadata": {},
   "schema": {
-    "name": "bb-component-SuperActionButtonGroup",
-    "friendlyName": "Super Action Button Group",
-    "description": "Manage groups of Super Action Button components",
-    "icon": "Text",
+    "name": "bb-component-SuperToolbar",
+    "friendlyName": "Super Toolbar",
+    "description": "Manage groups of Button",
+    "info" : "Name a button _divider if you want to render a Divider",
+    "icon": "Button",
     "hasChildren" : true,
+    "showEmptyState" : false,
     "settings": [
+      {
+        "type" : "select",
+        "key" : "buttonType",
+        "label" : "Type",
+        "barStyle": "buttons",
+        "showInBar": true,
+        "options" : [
+          { "label" : "Normal", "value": "normal", "barIcon" : "Button" },
+          { "label" : "Action", "value": "action" , "barIcon" : "App" }
+        ]
+      },
+      {
+        "section": true,
+        "name": "Buttons",
+        "settings": [
+          {
+            "type": "buttonConfiguration",
+            "key": "buttons",
+            "defaultValue": [
+              {
+                "type": "cta",
+                "text": "Button 1"
+              },
+              {
+                "type": "primary",
+                "text": "Button 2"
+              }
+            ]
+          }
+        ]
+      },
       {
         "type": "select",
         "label": "Direction",
