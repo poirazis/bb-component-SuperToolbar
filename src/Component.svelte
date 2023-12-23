@@ -1,54 +1,103 @@
 <script>
-  import { getContext, setContext } from "svelte"
-  import { writable } from "svelte/store"
+  import { getContext, setContext } from "svelte";
+  import { writable } from "svelte/store";
 
-  export let direction
-  export let size
-  export let quiet
-  export let iconOnly
-  export let compact
+  export let direction = "row";
+  export let size;
+  export let quiet;
+  export let iconOnly;
+  export let compact;
 
-  export let buttonType
-  export let buttons
+  export let buttonType;
+  export let buttons;
 
-  const { styleable, Block, BlockComponent } = getContext("sdk")
-  const component = getContext("component")
-  const buttonGroupStore = writable({ "size" : size, "quiet": quiet, "iconOnly" : iconOnly });
+  export let preset;
 
-  $: $buttonGroupStore.size = size
-  $: $buttonGroupStore.quiet = quiet
-  $: $buttonGroupStore.iconOnly = iconOnly
+  let appliedPreset;
 
-  const getButtonProps = ( btn ) => {
-    return {
-      size: "M",
-      text: btn.text
-    }
+  const { styleable, Block, BlockComponent, componentStore, builderStore } =
+    getContext("sdk");
+  const component = getContext("component");
+  const buttonGroupStore = writable({
+    size: size,
+    quiet: quiet,
+    iconOnly: iconOnly,
+  });
+
+  const presets = {
+    form: [
+      {
+        type: "cta",
+        text: "Cancel",
+      },
+      {
+        type: "primary",
+        text: "Save",
+      },
+    ],
+    pagination: [
+      {
+        type: "cta",
+        text: "Copy",
+      },
+      {
+        type: "primary",
+        text: "Paste",
+      },
+      {
+        type: "primary",
+        text: "Duplicate",
+      },
+    ],
+  };
+
+  $: $buttonGroupStore.size = size;
+  $: $buttonGroupStore.quiet = quiet;
+  $: $buttonGroupStore.iconOnly = iconOnly;
+
+  $: if (
+    $builderStore.inBuilder &&
+    preset != "custom" &&
+    appliedPreset != preset &&
+    $componentStore.selectedComponentPath?.includes($component.id)
+  ) {
+    builderStore.actions.updateProp("buttons", presets[preset]);
+    appliedPreset = preset;
   }
 
-  setContext( "super-action-button-group", buttonGroupStore )
+  const getButtonProps = (btn) => {
+    return {
+      size: "M",
+      text: btn.text,
+      type: btn.type,
+      onClick: btn.onClick
+    };
+  };
 
-  $: console.log(buttons)
+  setContext("super-action-button-group", buttonGroupStore);
 </script>
 
-
 <Block>
-  <div 
-  class="spectrum-ActionGroup spectrum-ActionGroup--size{size}" 
-  class:spectrum-ActionGroup--vertical={direction=="column"}
-  class:spectrum-ActionGroup--quiet={quiet}
-  class:spectrum-ActionGroup--compact={compact}
-  use:styleable={$component.styles}
+  <div
+    class="spectrum-ActionGroup spectrum-ActionGroup--size{size}"
+    class:spectrum-ActionGroup--vertical={direction == "column"}
+    class:spectrum-ActionGroup--quiet={quiet}
+    class:spectrum-ActionGroup--compact={compact}
+    use:styleable={$component.styles}
   >
-    {#each buttons as button, idx }
+  {#if buttons?.length}
+    {#each buttons as button, idx}
       <BlockComponent
-        type={  buttonType == "action" ? "plugin/bb-coomponent-SuperActionButton" : "button"}
+        type={buttonType == "action"
+          ? "plugin/bb-component-SuperButton"
+          : "button"}
         props={getButtonProps(button)}
         order={idx}
         interactive
         name="SuperButton"
       />
     {/each}
+    {/if}
     <slot />
   </div>
 </Block>
@@ -59,7 +108,7 @@
     gap: var(--spectrum-global-dimension-size-100);
   }
 
-  .spectrum-ActionGroup--compact{
+  .spectrum-ActionGroup--compact {
     gap: 0px;
   }
 </style>

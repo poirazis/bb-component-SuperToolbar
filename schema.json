@@ -3,23 +3,45 @@
   "metadata": {},
   "schema": {
     "name": "bb-component-SuperToolbar",
-    "friendlyName": "Super Toolbar",
+    "friendlyName": "Super Button Toolbar",
     "description": "Manage groups of Button",
     "info" : "Name a button _divider if you want to render a Divider",
     "icon": "Button",
     "hasChildren" : true,
     "showEmptyState" : false,
+    "block" : false,
     "settings": [
       {
         "type" : "select",
-        "key" : "buttonType",
-        "label" : "Type",
-        "barStyle": "buttons",
-        "showInBar": true,
+        "key" : "mode",
+        "label" : "Toolbar Type",
+        "defaultValue" : "normal",
         "options" : [
-          { "label" : "Normal", "value": "normal", "barIcon" : "Button" },
-          { "label" : "Action", "value": "action" , "barIcon" : "App" }
+          { "label" : "Normal", "value": "normal" },
+          { "label" : "ON / OFF", "value": "onoff" },
+          { "label" : "Multi ON / OFF", "value": "multiOnoff" }
         ]
+      },
+      {
+        "type" : "select",
+        "key" : "buttonType",
+        "label" : "Button Type",
+        "options" : [
+          { "label" : "Action", "value": "action" },
+          { "label" : "Normal", "value": "normal" }
+        ],
+        "defaultValue" : "action"
+      },
+      {
+        "type" : "select",
+        "key"  : "preset",
+        "label": "Preset",
+        "options" : [
+          { "label" : "Form" , "value" : "form" },
+          { "label" : "Pagination" , "value" : "pagination" },
+          { "label" : "Custom" , "value" : "custom" }
+        ],
+        "defaultValue" : "column"
       },
       {
         "section": true,
@@ -49,19 +71,19 @@
         "barStyle": "buttons",
         "options": [
           {
-            "label": "Column",
-            "value": "column",
-            "barIcon": "ViewColumn",
-            "barTitle": "Column layout"
-          },
-          {
             "label": "Row",
             "value": "row",
             "barIcon": "ViewRow",
             "barTitle": "Row layout"
+          },
+          {
+            "label": "Column",
+            "value": "column",
+            "barIcon": "ViewColumn",
+            "barTitle": "Column layout"
           }
         ],
-        "defaultValue": "column"
+        "defaultValue": "row"
       },
       {
         "type": "select",
@@ -70,10 +92,6 @@
         "showInBar": true,
         "barStyle": "picker",
         "options": [
-          {
-            "label": "Extra Small",
-            "value": "XS"
-          },
           {
             "label": "Small",
             "value": "S"
@@ -85,10 +103,6 @@
           {
             "label": "Large",
             "value": "L"
-          },
-          {
-            "label": "Extra Large",
-            "value": "XL"
           }
         ],
         "defaultValue": "M"
