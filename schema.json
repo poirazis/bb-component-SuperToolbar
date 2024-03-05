@@ -5,7 +5,6 @@
     "name": "bb-component-SuperToolbar",
     "friendlyName": "Super Button Toolbar",
     "description": "Manage groups of Button",
-    "info" : "Name a button _divider if you want to render a Divider",
     "icon": "Button",
     "hasChildren" : true,
     "showEmptyState" : false,
@@ -31,37 +30,6 @@
           { "label" : "Normal", "value": "normal" }
         ],
         "defaultValue" : "action"
-      },
-      {
-        "type" : "select",
-        "key"  : "preset",
-        "label": "Preset",
-        "options" : [
-          { "label" : "Form" , "value" : "form" },
-          { "label" : "Pagination" , "value" : "pagination" },
-          { "label" : "Custom" , "value" : "custom" }
-        ],
-        "defaultValue" : "column"
-      },
-      {
-        "section": true,
-        "name": "Buttons",
-        "settings": [
-          {
-            "type": "buttonConfiguration",
-            "key": "buttons",
-            "defaultValue": [
-              {
-                "type": "cta",
-                "text": "Button 1"
-              },
-              {
-                "type": "primary",
-                "text": "Button 2"
-              }
-            ]
-          }
-        ]
       },
       {
         "type": "select",
